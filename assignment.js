@@ -1,107 +1,88 @@
-// 1. assignment:convert radial to degree
+// Convert radian to degree 
 
-function radianToDegree(inputRadial) {
+function radianToDegree(inputRadian) {
     const oneRadian = 57.2958;
 
-    if ((typeof inputRadial) == "number") {
-        const convertToDegree = oneRadian * inputRadial;
-        return convertToDegree;
+    if ((typeof inputRadian) == "number") {
+        const convertToDegree = oneRadian * inputRadian;
+        const convertTofixedNumber = convertToDegree.toFixed(2);
+        const finalConvertToDegree = parseFloat(convertTofixedNumber);
+        return finalConvertToDegree;
     }
     return 'please input a number'
 
 }
-const radial = 'oi';
-const degree = radianToDegree(radial);
-console.log(degree);
 
 
-// 2.check the file name whether this is a javascript fill or not 
+// File type Checking 
 
 function isJavaScriptFile(fileName) {
-    for (let i = 0; i < fileName.length; i++) {
-        const element = fileName[i];
-        if (element == 'javascript') {
+    if (typeof fileName == 'string') {
+        let reversFileName = '';
+        for (let i = fileName.length - 1; i >= 0; i--) {
+            const element = fileName[i];
+            reversFileName = reversFileName + element;
+        }
+        const changeNameLowercase = reversFileName.toLowerCase();
+        const checkingFileType = changeNameLowercase.slice(0, 3);
+        if (checkingFileType == 'sj.') {
             return true;
         }
+    }
+    else {
+        return 'please input a string file name'
     }
     return false;
 }
 
-const files = ['python', 'c++', 'javascript', 'react',];
-const outPut = isJavaScriptFile(files);
-console.log(outPut)
 
+// Find out total oil price 
 
-// 3. *dieselPerLiterPrice = 114;
-//    *petrolPerLiterPrice = 114;
-//    *octenPerLiterPrice = 114;
-
-function oilPrice(diesel, petrol, octen) {
+function oilPrice(dieselAmount, petrolAmount, octenAmount) {
     const dieselPerLiterPrice = 114;
     const petrolPerLiterPrice = 130;
     const octenPerLiterPrice = 135;
-    if (typeof diesel == 'number' && typeof petrol == 'number' && typeof octen == 'number') {
-        const totalDieselPrice = dieselPerLiterPrice * diesel;
-        const totalPetrolPrice = petrolPerLiterPrice * petrol;
-        const totalOctenPrice = octenPerLiterPrice * octen;
+    if (typeof dieselAmount == 'number' && typeof petrolAmount == 'number' && typeof octenAmount == 'number') {
+        const totalDieselPrice = dieselPerLiterPrice * dieselAmount;
+        const totalPetrolPrice = petrolPerLiterPrice * petrolAmount;
+        const totalOctenPrice = octenPerLiterPrice * octenAmount;
 
-        const totalCost = totalDieselPrice + totalPetrolPrice + totalOctenPrice;
-        return totalCost;
+        const totalOilPrice = totalDieselPrice + totalPetrolPrice + totalOctenPrice;
+        return totalOilPrice;
     }
-    return 'please input a valid number'
+    return 'Please input a valid number'
 
 }
-const dieselNeed = 'iu';
-const petrolNeed = 15;
-const octenNeed = 7;
-const totalOilprice = oilPrice(dieselNeed, petrolNeed, octenNeed);
-console.log(totalOilprice);
 
 
-4.
-// 117 participants 
-// reserve bus = 50 per bus
-// microbus = 11 
-// remaining = publice bus
-// per ticket price = 250
+// Extra passenger total ticket price 
 
-function publicBusFare(peoples) {
-    const twoBusTotalSit = 50 * 2;
-    const microbusTotalSit = 11;
-    const locaBusTicketPrice = 250;
+function publicBusFare(passenger) {
 
-    if (typeof peoples == 'number') {
-        const totalHaveSit = twoBusTotalSit + microbusTotalSit;
-        let remainingPeople = peoples - totalHaveSit;
-        const remaingPeopleTicketCosr = remainingPeople * locaBusTicketPrice;
-        return remaingPeopleTicketCosr;
+    const localBusTicketPrice = 250;
+    const haveBusSit = 50;
+    const haveMicroBusSit = 11;
+    if (typeof passenger == 'number' && passenger > 0) {
+
+        const reamingPeople = (passenger % haveBusSit) % haveMicroBusSit;
+        const totalTicketCost = reamingPeople * localBusTicketPrice;
+        return totalTicketCost;
+
     }
     return 'please input a valid number';
 
 }
 
-const totalMember = 'oiet';
-const localBusTotslCost = publicBusFare(totalMember);
-console.log(localBusTotslCost);
 
+// Find a true friendship 
 
-function isBestFriend(friendInfo, friendInfo2) {
-    // const name = friendInfo.name;
-    // const name2 = friendInfo2.name;
-    // const friendName = friendInfo.friend;
-    // const friendName2 = friendInfo2.friend;
-    if (typeof friendInfo == 'object' && typeof friendInfo2 == 'object') {
-        if (friendInfo.name == friendInfo2.friend && friendInfo2.name == friendInfo.friend) {
+function isBestFriend(firstFriendInfo, secondFriendInfo) {
+
+    if (typeof firstFriendInfo == 'object' && typeof secondFriendInfo == 'object') {
+        if (firstFriendInfo.name == secondFriendInfo.friend && secondFriendInfo.name == firstFriendInfo.friend) {
             return true;
         }
-        return false
+        return false;
     }
-    return 'please input a object'
-
-
+    return 'Please input a object';
 }
-const fristFriend = { name: 'abul', friend: 'babul' };
-const secondFriend = { name: 'babul', friend: 'abul' };
-
-const originalBestFriend = isBestFriend(fristFriend, secondFriend);
-console.log(originalBestFriend);
